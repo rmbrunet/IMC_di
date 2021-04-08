@@ -15,13 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		GetTaxForOrder.json = GetTaxForOrder.json
+		IMC.ClassDiagram.drawio = IMC.ClassDiagram.drawio
 		IMC.rest = IMC.rest
 		Readme.md = Readme.md
+		UMC.ClassDiagram.jpg = UMC.ClassDiagram.jpg
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMC.TaxJarTaxRateCalculatorTests", "tests\IMC.TaxJarTaxRateCalculatorTests\IMC.TaxJarTaxRateCalculatorTests.csproj", "{B9368958-6226-48F1-917A-D8CE020E6672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMC.Web.ControllersTests", "tests\IMC.Web.ControllersTests\IMC.Web.ControllersTests.csproj", "{C4BB30D7-EE3C-4ECD-9735-890338779888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IMC.Web.ControllersTests", "tests\IMC.Web.ControllersTests\IMC.Web.ControllersTests.csproj", "{C4BB30D7-EE3C-4ECD-9735-890338779888}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

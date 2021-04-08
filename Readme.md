@@ -15,7 +15,7 @@ https://imc-rmb.azurewebsites.net/swagger/index.html
 
 The following json body can be used for testing the Order tax endpoint:
 
-```
+``` json
 {
   "id": "1",
   "customerId": "1",
@@ -52,6 +52,10 @@ To run the project locally is necessary to create a user's secret file and add t
 
 Only the minimal set of Entities as required by the TaxJar REST Api where created. The IMC Domain Entities are totally independent from the TaxJar API opening the possibility of having other Tax Calculators in the future. 
 
+### Main Class Diagram
+
+![Class Diagram](IMC.ClassDiagram.jpg)
+
 ## Building & Testing
 
 There is a simple build.cake [Cakebuild](https://cakebuild.net/) file included in the root folder. This uses the Cake.Tool locally to drive the execution of the build, testing, and publishing of artifacts via the command line
@@ -75,7 +79,7 @@ A IMC.rest file is also included in the solution root. This file is intended to 
 
 For demonstration purposes some rules have been imposed on the TaxJar entities following the documentation. Analogously, some rules have been applied to the Order entity in the IMC.Domain just as an example. [FluentValidation](https://www.nuget.org/packages/FluentValidation/) was used to create some relatively complex rules. For example the TaxJar requirement that the State Code is required for USA and Canada:
 
-```
+``` C#
 RuleFor(o => o.ToState)
     .NotEmpty()
     .When(o => (o.ToCountry == "US") || (o.ToCountry == "CA"))

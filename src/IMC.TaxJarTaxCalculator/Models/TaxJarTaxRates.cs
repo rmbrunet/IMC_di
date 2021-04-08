@@ -42,14 +42,16 @@ namespace IMC.TaxJarTaxCalculator.Models {
 
         public TaxRates MapToTaxRates() {
             return new() {
-                Zip = Zip,
-                Country = Country,
+                Location = new Location {
+                    Zip = Zip,
+                    CountryCode = Country,
+                    City = City,
+                    County = County,
+                    StateCode = State 
+                },
                 CountryRate = Convert.ToDecimal(CountryRate),
-                City = City,
                 CityRate = Convert.ToDecimal(CityRate),
-                County = County,
                 CountyRate = Convert.ToDecimal(CountyRate),
-                State = State,
                 StateRate = Convert.ToDecimal(StateRate),
                 FreightTaxable = FreightTaxable,
                 CombinedRate = Convert.ToDecimal(CombinedRate),

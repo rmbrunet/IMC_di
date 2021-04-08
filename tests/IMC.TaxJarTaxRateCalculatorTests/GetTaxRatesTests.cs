@@ -49,10 +49,10 @@ namespace TaxJarTaxRateCalculatorTests {
 
             var taxRates = await calculator.GetTaxRates(location);
 
-            Assert.Equal(zipCode, taxRates.Zip);
-            Assert.Equal("US", taxRates.Country);
-            Assert.Equal("FL", taxRates.State);
-            Assert.Equal("BROWARD", taxRates.County);
+            Assert.Equal(zipCode, taxRates.Location.Zip);
+            Assert.Equal("US", taxRates.Location.CountryCode);
+            Assert.Equal("FL", taxRates.Location.StateCode);
+            Assert.Equal("BROWARD", taxRates.Location.County);
             Assert.Equal(0.06m, taxRates.StateRate, 2);
             Assert.Equal(0.01m, taxRates.CountyRate, 2);
             Assert.Equal(0.07m, taxRates.CombinedRate, 2);

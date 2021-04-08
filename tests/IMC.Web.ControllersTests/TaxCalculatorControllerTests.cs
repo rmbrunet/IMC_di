@@ -18,14 +18,16 @@ namespace IMC.Web.ControllersTests {
             var loggerMock = new Mock<ILogger<TaxCalculatorController>>();
 
             TaxRates taxRates = new() {
-                Zip = "33029",
+                Location = new Location {
+                    Zip = "33029",
+                    City = "Hollywood",
+                    Country = "US",
+                    State = "FL",
+                    County = "BROWARD"
+                },
                 CityRate = 0m,
-                City = "Hollywood",
                 CountryRate = 0m,
-                Country = "US",
-                State = "FL",
                 StateRate = 0.06m,
-                County = "BROWARD",
                 CountyRate = 0.01m,
                 CombinedDistrictRate = 0m,
                 CombinedRate = 0.07m,
@@ -45,17 +47,17 @@ namespace IMC.Web.ControllersTests {
             TaxRates tr = Assert.IsAssignableFrom<TaxRates>(result.Value);
             Assert.IsType<ActionResult<TaxRates>>(response);
             Assert.Equal(taxRates.CombinedRate, tr.CombinedRate);
-            Assert.Equal(taxRates.City, tr.City);
+            Assert.Equal(taxRates.Location.City, tr.Location.City);
             Assert.Equal(taxRates.CityRate, tr.CityRate);
             Assert.Equal(taxRates.CombinedDistrictRate, tr.CombinedDistrictRate);
-            Assert.Equal(taxRates.Country, tr.Country);
+            Assert.Equal(taxRates.Location.Country, tr.Location.Country);
             Assert.Equal(taxRates.CountryRate, tr.CountryRate);
-            Assert.Equal(taxRates.County, tr.County);
+            Assert.Equal(taxRates.Location.County, tr.Location.County);
             Assert.Equal(taxRates.CountyRate, tr.CountyRate);
             Assert.Equal(taxRates.FreightTaxable, tr.FreightTaxable);
-            Assert.Equal(taxRates.State, tr.State);
+            Assert.Equal(taxRates.Location.State, tr.Location.State);
             Assert.Equal(taxRates.StateRate, tr.StateRate);
-            Assert.Equal(taxRates.Zip, tr.Zip);
+            Assert.Equal(taxRates.Location.Zip, tr.Location.Zip);
 
         }
 
