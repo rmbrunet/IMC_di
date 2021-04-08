@@ -1,0 +1,85 @@
+@url_localhost = https://localhost:44393/api/TaxCalculator
+
+@url_azure = https://imc-rmb.azurewebsites.net/api/TaxCalculator
+
+@url = {{url_azure}} 
+
+GET {{url}}/rates/33029
+
+###
+GET {{url}}/rates/33029-6009?countryCode=US
+
+###
+GET {{url}}/rates/33029-6009?countryCode=USA
+
+###
+GET {{url}}/rates/H3B1H4
+
+###
+GET {{url}}/rates/H3B1H4?countryCode=CA
+
+###
+POST {{url}}/taxes
+Content-Type: application/json
+
+{
+  "id": "1",
+  "customerId": "1",
+  "addressTo": {
+    "countryCode": "US",
+    "zip": "90002",
+    "stateCode": "CA",
+    "city": "Los Angeles",
+    "street": "1335 E 103rd St"
+  },
+  "addressFrom": {
+    "countryCode": "US",
+    "zip": "92093",
+    "stateCode": "CA",
+    "city": "La Jolla",
+    "street": "9500 Gilman Drive"
+  },
+  "shipping": 1.5,
+  "lineItems": [
+    {
+      "id": "abc",
+      "quantity": 1,
+      "productTaxCode": "20010",
+      "unitPrice": 15,
+      "discount": 0
+    }
+  ]
+}
+
+###
+POST {{url}}/taxes
+Content-Type: application/json
+
+{
+  "id": "1",
+  "customerId": "1",
+  "addressTo": {
+    "countryCode": "US",
+    "zip": "90002",
+    "stateCode": "CA",
+    "city": "Los Angeles",
+    "street": "1335 E 103rd St"
+  },
+  "addressFrom": {
+    "countryCode": "US",
+    "zip": "92093",
+    "stateCode": "CA",
+    "city": "La Jolla",
+    "street": "9500 Gilman Drive"
+  },
+  "shipping": 1.5,
+  "lineItems": [
+    {
+      "id": "abc",
+      "quantity": 0,
+      "productTaxCode": "20010",
+      "unitPrice": 15,
+      "discount": 0
+    }
+  ]
+}

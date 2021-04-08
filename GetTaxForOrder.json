@@ -1,0 +1,28 @@
+{
+  "id": "1",
+  "customerId": "1",
+  "addressTo": {
+    "countryCode": "US",
+    "zip": "90002",
+    "stateCode": "CA",
+    "city": "Los Angeles",
+    "street": "1335 E 103rd St"
+  },
+  "addressFrom": {
+    "countryCode": "US",
+    "zip": "92093",
+    "stateCode": "CA",
+    "city": "La Jolla",
+    "street": "9500 Gilman Drive"
+  },
+  "shipping": 1.5,
+  "lineItems": [
+    {
+      "id": "abc",
+      "quantity": 1,
+      "productTaxCode": "20010",
+      "unitPrice": 15,
+      "discount": 0
+    }
+  ]
+}
