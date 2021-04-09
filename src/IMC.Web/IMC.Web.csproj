@@ -5,6 +5,11 @@
     <UserSecretsId>81e4d908-85d9-44cb-8b45-48608c51b25d</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\rmbrunet\Source\Repos\IMC\src\IMC.Web\IMC.Web.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
   </ItemGroup>
@@ -13,6 +18,12 @@
     <ProjectReference Include="..\IMC.Application\IMC.Application.csproj" />
     <ProjectReference Include="..\IMC.Domain\IMC.Domain.csproj" />
     <ProjectReference Include="..\IMC.TaxJarTaxCalculator\IMC.TaxJarTaxCalculator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="IMC.Web.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

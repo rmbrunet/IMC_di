@@ -6,12 +6,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
 using System.Net.Http;
+using System.Reflection;
 
 namespace IMC.Web {
     public class Startup {
-        public Startup(IConfiguration configuration) {
+        private readonly IHostEnvironment _env;
+
+        public Startup(IConfiguration configuration, Microsoft.Extensions.Hosting.IHostEnvironment env) {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -38,6 +43,7 @@ namespace IMC.Web {
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" });
+                c.IncludeXmlComments(XmlCommentsFilePath);
             });
         }
 
@@ -61,6 +67,14 @@ namespace IMC.Web {
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
+        }
+
+        string XmlCommentsFilePath {
+            get {
+                var basePath = _env.ContentRootPath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿namespace IMC.Domain {
+    /// <summary>
+    /// Represents a collection of tax rates associated with a Location 
+    /// </summary>
     public class TaxRates {
         public Location Location { get; set; }
-        //public string Country { get; set; }
-        //public string State { get; set; }
-        //public string County { get; set; }
-        //public string City { get; set; }
-        //public string Zip { get; set; }
-
         public decimal CityRate { get; set; }
         public decimal CombinedDistrictRate { get; set; }
         public decimal CombinedRate { get; set; }

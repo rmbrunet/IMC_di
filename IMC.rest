@@ -4,7 +4,7 @@
 
 @url = {{url_azure}} 
 
-GET {{url}}/rates/33029
+GET {{url}}/rates/33174
 
 ###
 GET {{url}}/rates/33029-6009?countryCode=US
@@ -26,7 +26,7 @@ Content-Type: application/json
   "id": "1",
   "customerId": "1",
   "addressTo": {
-    "countryCode": "US",
+    "countryCode" : "USA",
     "zip": "90002",
     "stateCode": "CA",
     "city": "Los Angeles",

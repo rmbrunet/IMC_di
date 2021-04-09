@@ -21,7 +21,7 @@ namespace IMC.Web.ControllersTests {
                 Location = new Location {
                     Zip = "33029",
                     City = "Hollywood",
-                    Country = "US",
+                    CountryCode = "US",
                     State = "FL",
                     County = "BROWARD"
                 },
