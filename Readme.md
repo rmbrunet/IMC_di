@@ -34,6 +34,7 @@ The following json body can be used for testing the Order tax endpoint:
 {
   "id": "1",
   "customerId": "1",
+  "taxCalculatorId" : "TAXJAR",
   "addressTo": {
     "countryCode": "US",
     "zip": "90002",
