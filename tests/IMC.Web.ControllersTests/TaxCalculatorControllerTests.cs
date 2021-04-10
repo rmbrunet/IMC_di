@@ -14,8 +14,8 @@ namespace IMC.Web.ControllersTests {
         async Task Controller_returns_the_right_TaxRates() {
 
             // Arrange
-            var taxCalculatorMock = new Mock<ITaxCalculator>();
             var loggerMock = new Mock<ILogger<TaxCalculatorController>>();
+            var taxCalculatorMock = new Mock<ITaxCalculator>();
 
             TaxRates taxRates = new() {
                 Location = new Location {
@@ -36,7 +36,10 @@ namespace IMC.Web.ControllersTests {
 
             taxCalculatorMock.Setup(tx => tx.GetTaxRates(It.IsAny<Location>())).ReturnsAsync(taxRates);
 
-            var controller = new TaxCalculatorController(taxCalculatorMock.Object, loggerMock.Object);
+            var taxCalculatorProviderMock = new Mock<ITaxCalculatorProvider>();
+            taxCalculatorProviderMock.Setup(tp => tp.GetTaxCalculator(It.IsAny<string>())).Returns(taxCalculatorMock.Object);
+
+            var controller = new TaxCalculatorController(taxCalculatorProviderMock.Object, loggerMock.Object);
 
             // Act
             ActionResult<TaxRates> response = await controller.GetTaxRates("33029", null);
@@ -72,6 +75,7 @@ namespace IMC.Web.ControllersTests {
             OrderTax orderTax = new() {
                 OrderId = "1",
                 CustomerId = "1",
+                TaxCalculatorId = "TAXJAR",
                 AmountToCollect = 1.50m,
                 FreightTaxable = false,
                 OrderTotalAmount = 16.5m,
@@ -81,12 +85,16 @@ namespace IMC.Web.ControllersTests {
 
             taxCalculatorMock.Setup(tx => tx.GetSalesTax(It.IsAny<Order>())).ReturnsAsync(orderTax);
 
-            var controller = new TaxCalculatorController(taxCalculatorMock.Object, loggerMock.Object);
+            var taxCalculatorProviderMock = new Mock<ITaxCalculatorProvider>();
+            taxCalculatorProviderMock.Setup(tp => tp.GetTaxCalculator(It.IsAny<string>())).Returns(taxCalculatorMock.Object);
+
+            var controller = new TaxCalculatorController(taxCalculatorProviderMock.Object, loggerMock.Object);
 
             // Minimal Order To Pass Validation
             var order = new Order {
                 Id = "1",
                 CustomerId = "1",
+                TaxCalculatorId = "TAXJAR",
                 Shipping = 1.5m,
                 AddressFrom = new() {
                     CountryCode = "US",
@@ -135,7 +143,8 @@ namespace IMC.Web.ControllersTests {
 
             OrderTax orderTax = new() {
                 OrderId = "1",
-                CustomerId = "1",
+                CustomerId = "1", 
+                TaxCalculatorId = "TAXJAR",
                 AmountToCollect = 1.50m,
                 FreightTaxable = false,
                 OrderTotalAmount = 16.5m,
@@ -145,12 +154,16 @@ namespace IMC.Web.ControllersTests {
 
             taxCalculatorMock.Setup(tx => tx.GetSalesTax(It.IsAny<Order>())).ReturnsAsync(orderTax);
 
-            var controller = new TaxCalculatorController(taxCalculatorMock.Object, loggerMock.Object);
+            var taxCalculatorProviderMock = new Mock<ITaxCalculatorProvider>();
+            taxCalculatorProviderMock.Setup(tp => tp.GetTaxCalculator(It.IsAny<string>())).Returns(taxCalculatorMock.Object);
+
+            var controller = new TaxCalculatorController(taxCalculatorProviderMock.Object, loggerMock.Object);
 
             // Order without LineItems 
             var order = new Order {
                 Id = "1",
                 CustomerId = "1",
+                TaxCalculatorId = "TAXJAR",
                 Shipping = 1.5m,
                 AddressFrom = new() {
                     CountryCode = "US",

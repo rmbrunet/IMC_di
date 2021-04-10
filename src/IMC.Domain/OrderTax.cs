@@ -2,7 +2,7 @@
     public class OrderTax {
         public string OrderId { get; set; }
         public string CustomerId { get; set; }
-
+        public string TaxCalculatorId { get; set; }
         public decimal AmountToCollect { get; set; }
         public bool FreightTaxable { get; set; }
         public decimal OrderTotalAmount { get; set; }

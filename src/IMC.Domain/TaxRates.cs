@@ -3,6 +3,8 @@
     /// Represents a collection of tax rates associated with a Location 
     /// </summary>
     public class TaxRates {
+        public string TaxCalculatorId { get; set; }
+
         public Location Location { get; set; }
         public decimal CityRate { get; set; }
         public decimal CombinedDistrictRate { get; set; }

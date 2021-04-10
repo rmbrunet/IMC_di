@@ -16,6 +16,8 @@ namespace IMC.TaxJarTaxCalculator {
             _httpClient = client;
         }
 
+        public string Id { get => "TAXJAR";  }
+
         public async Task<OrderTax> GetSalesTax(Order order) {
             TaxJarOrder taxJarOrder = TaxJarOrder.MapFromOrder(order);
 

@@ -1,3 +1,4 @@
+using IMC.Application;
 using IMC.Application.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace IMC.Web {
         public void ConfigureServices(IServiceCollection services) {
 
             // Each eventual TaxCalculator would need to be configured separately.
-            services.AddHttpClient(nameof(IMC.TaxJarTaxCalculator.TaxJarTaxCalculator), client => {
+            services.AddHttpClient(nameof(TaxJarTaxCalculator.TaxJarTaxCalculator), client => {
                 client.BaseAddress = new Uri(Configuration["TaxJarUrl"]);
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Configuration["TaxJarApiKey"]);
             });
@@ -36,8 +37,10 @@ namespace IMC.Web {
             services.AddTransient<ITaxCalculator>(sp => { 
                 var factory = sp.GetRequiredService<IHttpClientFactory>();
                 var client = factory.CreateClient(nameof(IMC.TaxJarTaxCalculator.TaxJarTaxCalculator));
-                return new IMC.TaxJarTaxCalculator.TaxJarTaxCalculator(client);
+                return new TaxJarTaxCalculator.TaxJarTaxCalculator(client);
             });
+
+            services.AddTransient<ITaxCalculatorProvider, TaxCalculatorProvider>();
 
             services.AddControllers();
 

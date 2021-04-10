@@ -4,12 +4,13 @@
         <name>IMC.Web</name>
     </assembly>
     <members>
-        <member name="M:Web.Controllers.TaxCalculatorController.GetTaxRates(System.String,System.String)">
+        <member name="M:Web.Controllers.TaxCalculatorController.GetTaxRates(System.String,System.String,System.String)">
             <summary>
             GET operation to obtain tax rates for a given location.
             </summary>
             <param name="zipCode"></param>
             <param name="countryCode"></param>
+            <param name="taxCalculatorId"></param>
             <remarks>
             Sample return value
             
@@ -25,6 +26,7 @@
                         "country": null,
                         "state": null
                     },
+                    "taxCalculatorId": "TAXJAR",
                     "cityRate": 0.0,
                     "combinedDistrictRate": 0.0,
                     "combinedRate": 0.07,
@@ -48,6 +50,7 @@
                     {
                       "id": "1",
                       "customerId": "1",
+                      "taxCalculatorId": "TAXJAR",
                       "addressTo": {
                         "countryCode": "US",
                         "zip": "90002",
@@ -79,6 +82,7 @@
                     {
                         "orderId": "1",
                         "customerId": "1",
+                        "taxCalculatorId": "TAXJAR",
                         "amountToCollect": 1.43,
                         "freightTaxable": false,
                         "orderTotalAmount": 16.5,

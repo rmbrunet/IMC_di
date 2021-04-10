@@ -9,24 +9,25 @@ GET {{url}}/rates/33174
 ###
 GET {{url}}/rates/33029-6009?countryCode=US
 
-###
+### Validation error: Country Code too long
 GET {{url}}/rates/33029-6009?countryCode=USA
 
-###
+### Validation error: Country code needed
 GET {{url}}/rates/H3B1H4
 
-###
+### Valid non-USA request
 GET {{url}}/rates/H3B1H4?countryCode=CA
 
-###
+### Valid Request
 POST {{url}}/taxes
 Content-Type: application/json
 
 {
   "id": "1",
   "customerId": "1",
+  "taxCalculatorId": "TAXJAR",
   "addressTo": {
-    "countryCode" : "USA",
+    "countryCode" : "US",
     "zip": "90002",
     "stateCode": "CA",
     "city": "Los Angeles",
@@ -51,13 +52,14 @@ Content-Type: application/json
   ]
 }
 
-###
+### Validation error: quantity 0 in line item
 POST {{url}}/taxes
 Content-Type: application/json
 
 {
   "id": "1",
   "customerId": "1",
+  "taxCalculatorId": "TAXJAR",
   "addressTo": {
     "countryCode": "US",
     "zip": "90002",
@@ -81,5 +83,32 @@ Content-Type: application/json
       "unitPrice": 15,
       "discount": 0
     }
+  ]
+}
+
+### Validation error: empty line items
+POST {{url}}/taxes
+Content-Type: application/json
+
+{
+  "id": "1",
+  "customerId": "1",
+  "taxCalculatorId": "TAXJAR",
+  "addressTo": {
+    "countryCode": "US",
+    "zip": "90002",
+    "stateCode": "CA",
+    "city": "Los Angeles",
+    "street": "1335 E 103rd St"
+  },
+  "addressFrom": {
+    "countryCode": "US",
+    "zip": "92093",
+    "stateCode": "CA",
+    "city": "La Jolla",
+    "street": "9500 Gilman Drive"
+  },
+  "shipping": 1.5,
+  "lineItems": [
   ]
 }
