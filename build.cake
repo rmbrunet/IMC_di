@@ -66,6 +66,12 @@ Task("Publish")
 
 });
 
+/*
+https://daveaglick.com/posts/publishing-to-azure-using-cake-and-web-deploy
+
+https://stackoverflow.com/questions/45228119/can-cake-of-http-cakebuild-net-be-used-for-deploying-azure-webapps
+*/
+
 Task("Default").IsDependentOn("Publish");
 
 RunTarget(target);
