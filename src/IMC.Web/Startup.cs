@@ -25,15 +25,12 @@ namespace IMC.Web {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
 
-            // Each eventual TaxCalculator would need to be configured separately.
+            // Each eventual TaxCalculator would need to be configured and registered separately.
             services.AddHttpClient(nameof(TaxJarTaxCalculator.TaxJarTaxCalculator), client => {
                 client.BaseAddress = new Uri(Configuration["TaxJarUrl"]);
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Configuration["TaxJarApiKey"]);
             });
 
-            // This will inject the TaxJarTaxCalculator to any controller.
-            // IS NOT ADDRESING THE POSSIBILITY OF HAVING MULTIPLE TAX CALCULATORS!
-            // NEED TaxCalculatorFactory
             services.AddTransient<ITaxCalculator>(sp => { 
                 var factory = sp.GetRequiredService<IHttpClientFactory>();
                 var client = factory.CreateClient(nameof(IMC.TaxJarTaxCalculator.TaxJarTaxCalculator));
