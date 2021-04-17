@@ -62,19 +62,25 @@ namespace TaxJarTaxRateCalculatorTests {
 
         [Fact]
         public async Task Throws_validation_exception_when_zip_code_is_absent() {
-
+            // Arrange
             var handler = new Mock<HttpMessageHandler>();
             var client = handler.CreateClient();
 
             TaxJarTaxCalculator calculator = new(client);
             var location = new Location() { Zip = null };
-            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(() => calculator.GetTaxRates(location));
+
+            // Act
+            Task<TaxRates> action() => calculator.GetTaxRates(location);
+
+            // Assert
+            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(action);
             Assert.Contains("Zip Code is mandatory", ex.Message);
         }
 
         [Fact]
         public async Task Throws_validation_exception_when_zip_code_is_not_USA_and_CountryCode_absent () {
 
+            // Arrange
             var handler = new Mock<HttpMessageHandler>();
             var client = handler.CreateClient();
 
@@ -82,13 +88,17 @@ namespace TaxJarTaxRateCalculatorTests {
 
             var location = new Location() { Zip = "K1N 1G8", CountryCode = null };
 
-            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(() => calculator.GetTaxRates(location));
+            // Act
+            Task<TaxRates> action() => calculator.GetTaxRates(location);
+
+
+            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(action);
             Assert.Contains("Country Code is mandatory for Locations different than USA", ex.Message);
         }
 
         [Fact]
         public async Task Throws_validation_exception_when_CountryCode_length_greater_than_two() {
-
+            // Arrange
             var handler = new Mock<HttpMessageHandler>();
             var client = handler.CreateClient();
 
@@ -96,7 +106,11 @@ namespace TaxJarTaxRateCalculatorTests {
 
             var location = new Location() { Zip = "K1N 1G8", CountryCode = "CAN" };
 
-            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(() => calculator.GetTaxRates(location));
+            // Act
+            Task<TaxRates> action() => calculator.GetTaxRates(location);
+
+            // Assert
+            ValidationException ex = await Assert.ThrowsAsync<ValidationException>(action);
             Assert.Contains("Country Code must be two characters long", ex.Message);
         }
 
