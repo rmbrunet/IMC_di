@@ -5,11 +5,11 @@
 @url = {{url_azure}} 
 
 
-###
+### Getting Tax Rates for US Location
 
 GET {{url}}/rates/33174
 
-###
+### Getting Tax Rate for US location using country code
 GET {{url}}/rates/33029-6009?countryCode=US
 
 ### Validation error: Country Code too long
