@@ -17,7 +17,10 @@ namespace Web.Controllers {
         private readonly ITaxCalculatorProvider _taxCalculatorProvider;
         private readonly ILogger<TaxCalculatorController> _logger;
 
-        public TaxCalculatorController(ITaxCalculatorProvider taxCalculatorProvider, ILogger<TaxCalculatorController> logger) {
+        public TaxCalculatorController(
+            ITaxCalculatorProvider taxCalculatorProvider, 
+            ILogger<TaxCalculatorController> logger) {
+            
             _taxCalculatorProvider = taxCalculatorProvider;
             _logger = logger;
         }

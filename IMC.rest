@@ -4,6 +4,9 @@
 
 @url = {{url_azure}} 
 
+
+###
+
 GET {{url}}/rates/33174
 
 ###
